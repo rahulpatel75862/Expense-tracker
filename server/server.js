@@ -7,10 +7,9 @@ import { expressMiddleware } from "@apollo/server/express4";
 import mergedResolvers from "./resolvers/index.js";
 import mergedTypeDefs from "./typeDefs/index.js";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import { connectDb } from "./db/Db.js";
 
 dotenv.config();
-
-
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -37,3 +36,4 @@ const PORT = process.env.PORT || 8000
 httpServer.listen({ port: PORT }, () => {
   console.log(`server is running on ${PORT}`);
 });
+await connectDb();
